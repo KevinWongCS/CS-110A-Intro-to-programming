@@ -51,23 +51,37 @@
 
 
 class ItemToPurchase:
-    def __init__(self):
-        self.item_name = 'none'
-        self.item_price = 0
-        self.item_quantity = 0
+    # PARAMETERIZED CONSTRUCTOR ----------------------- CAUSED ME ALOT OF TROUBLE WITH SYNTAX!!!!!!!!
+    # could have also put the parameters along side "self"
+    # def __init__(self, item_name, item_price, item_quantity, item_description):
+    # the above is called a parameterized constructor
+    # if using a parameterized constructor, we initialize the parameters inside the constructor
+    # i.e. def __init__(self, item_name = "none", item_price = 0, item_quantity = 0, item_description = 0):
+    # used when you want to pass the values during object creation
+    # i.e. Iwant = ItemToPurchase(COCO, 2, 5)
+    def __init__(self, item_name = "none", item_price = 0, item_quantity = 0):
+        self.item_name = item_name
+        self.item_price = item_price
+        self.item_quantity = item_quantity
+
 
     def print_item_cost(self):
-        return "{:s} {:d} @ ${:d} = ${}".format(self.item_name, self.item_quantity, self.item_price,
-                                                self.item_quantity * self.item_price)
+        print("{:s} {:d} @ ${:d} = ${}".format(self.item_name, self.item_quantity, self.item_price,
+                                                self.item_quantity * self.item_price))
+    def print_item_description(self):
+        print("{}: {}".format(self.item_name, self.item_description))
+########################## part 2 of assignment ####################################################
 
 
 if __name__ == "__main__":
     print("Item 1")
-    Iwant = ItemToPurchase()
-    Iwant.item_name = input("Enter the item name:\n")
-    Iwant.item_price = int(input("Enter the item price:\n"))
-    Iwant.item_quantity = int(input("Enter the item quantity:\n"))
+    item_name = input("Enter the item name:\n")
+    item_price = int(input("Enter the item price:\n"))
+    item_quantity = int(input("Enter the item quantity:\n"))
+    Iwant = ItemToPurchase(item_name, item_price, item_quantity)
     print()
+    # note: the above and below are two acceptable way to create an instance for a class
+    # top way is better imo
     print("Item 2")
     Iwant2 = ItemToPurchase()
     Iwant2.item_name = input("Enter the item name:\n")
@@ -75,7 +89,8 @@ if __name__ == "__main__":
     Iwant2.item_quantity = int(input("Enter the item quantity:\n"))
     print()
     print("TOTAL COST")
-    print(Iwant.print_item_cost())
+    Iwant.print_item_cost()
     print(Iwant2.print_item_cost())
     print()
     print("Total: ${:d}".format((Iwant.item_quantity * Iwant.item_price) + (Iwant2.item_quantity * Iwant2.item_price)))
+    # ########################## part 2 of assignment ####################################################
